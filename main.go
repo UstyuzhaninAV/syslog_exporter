@@ -10,11 +10,18 @@ import (
 	"os"
 	"regexp"
 	"time"
+	"flag"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"gopkg.in/yaml.v2"
 )
+var configFile string
+
+func init() {
+	flag.StringVar(&configFile, "config", "config.yaml", "Path to the config file")
+	flag.Parse()
+}
 
 type Config struct {
 	LogFile        string `yaml:"log_file"`
@@ -45,7 +52,7 @@ func main() {
 		promhttp.Handler().ServeHTTP(w, r)
 	})
 
-	config, err := loadConfig("config.yaml")
+	config, err := loadConfig(configFile)
 	if err != nil {
 		log.Fatalf("Error loading config: %v", err)
 	}

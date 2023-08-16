@@ -2,5 +2,4 @@ log_file: "/var/log/syslog"
 log_pattern: "Out of memory: Kill process (\\d+) \\((\\w+)\\)"
 exporter_port: "9090"
 repeat_interval: 10   # Пауза перед следующей проверкой в секундах
-exclude_duration: 600 # Исключение событий старше 10 минут
-stateFile: "/opt/syslog_exporter/state.yaml"
+state_file: "/opt/syslog_exporter/state.yaml"
