@@ -181,9 +181,5 @@ func monitorLog(config *Config, state *State) error {
 		state.LastLineOffset, _ = file.Seek(0, io.SeekCurrent)
 	}
 
-	if state.LastLineOffset != 0 {
-		fmt.Printf("[%s] No OOM events detected since last check.\n", now.Format("2006-01-02 15:04:05"))
-	}
-
 	return scanner.Err()
 }
